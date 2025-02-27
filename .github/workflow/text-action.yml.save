@@ -1,0 +1,24 @@
+name: Test-Action
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    env:
+      PG_NAME: ${{ secrets.PG_NAME }}
+      PG_USER: ${{ sectets.PG_USER }}
+      PG_PASSWPRD: ${{ secrets.PG_PASSWORD }}
+      PG_HOST: $ {{ secrets.PG_HOST }}
+      PG_PORT: ${{ secrets.PG_PORT }}
+    steps:
+      - name: Проверка изменений
+        uses: actions/checkout@v2
+      - name: Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-verion: 3.12
+      - name: Установка зависимостей
+        uses: pip install -r requirements.txt
